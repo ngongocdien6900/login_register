@@ -3,20 +3,25 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import RegisterForm from '../RegisterForm';
 import { register } from '../userSlice';
+import { useSnackbar } from 'notistack';
 
 Register.propTypes = {};
 
 function Register(props) {
   const dispatch = useDispatch();
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const handleSubmit = async (values) => {
     try {
       const action = register(values);
       const resultAction = await dispatch(action);
-      const user = unwrapResult(resultAction);
+      //hàm này sẽ handle error
+      unwrapResult(resultAction);
       //làm gì tiếp khi thành công ? redirect qua trang home :D
+      enqueueSnackbar('Đăng ký thành công', { variant: 'success' });
     } catch (error) {
-      console.log('Error: ', error);
+      enqueueSnackbar(error.message, { variant: 'error' });
     }
   };
 

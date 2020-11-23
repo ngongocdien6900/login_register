@@ -1,25 +1,24 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useSnackbar } from 'notistack';
-import React from 'react';
 import { useDispatch } from 'react-redux';
-import RegisterForm from '../RegisterForm';
-import { register } from '../userSlice';
+import LoginForm from '../LoginForm/index';
+import { login } from '../userSlice';
 
-Register.propTypes = {};
+Login.propTypes = {};
 
-function Register(props) {
+function Login(props) {
   const dispatch = useDispatch();
 
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (values) => {
     try {
-      const action = register(values);
+      const action = login(values);
       const resultAction = await dispatch(action);
       //hàm này sẽ handle error
       unwrapResult(resultAction);
       //làm gì tiếp khi thành công ? redirect qua trang home :D
-      enqueueSnackbar('Đăng ký thành công', { variant: 'success' });
+      // enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
     } catch (error) {
       enqueueSnackbar(error.message, { variant: 'error' });
     }
@@ -27,9 +26,9 @@ function Register(props) {
 
   return (
     <div>
-      <RegisterForm onSubmit={handleSubmit} />
+      <LoginForm onSubmit={handleSubmit} />
     </div>
   );
 }
 
-export default Register;
+export default Login;

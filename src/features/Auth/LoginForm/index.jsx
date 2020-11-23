@@ -4,17 +4,16 @@ import Container from '@material-ui/core/Container';
 import { LockOutlined } from '@material-ui/icons';
 import InputField from 'components/form-controls/InputField';
 import PasswordField from 'components/form-controls/PasswordField';
-import SelectField from 'components/form-controls/SelectField';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-RegisterForm.propTypes = {
+LoginForm.propTypes = {
   onSubmit: PropTypes.func,
 };
 
-RegisterForm.defaultValues = {
+LoginForm.defaultValues = {
   onSubmit: null,
 };
 
@@ -39,26 +38,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function RegisterForm(props) {
+function LoginForm(props) {
   const classes = useStyles();
 
   const schema = yup.object().shape({
-    username: yup.string().required('Không được bỏ trống').min(6, 'Nhập ít nhất 6 kí tự'),
-    gender: yup.string().required('Hãy chọn giới tính'),
-    password: yup.string().required('Không được bỏ trống').min(6, 'Nhập ít nhất 6 kí tự'),
-    retypePassword: yup
-      .string()
-      .required('Không được bỏ trống.')
-      .oneOf([yup.ref('password')], 'Mật khẩu không trùng khớp'),
+    username: yup.string().required('Không được bỏ trống'),
+    password: yup.string().required('Không được bỏ trống'),
   });
 
   const form = useForm({
     //liệt kê tất cả các field ở đây
     defaultValues: {
       username: '',
-      gender: '',
       password: '',
-      retypePassword: '',
     },
     resolver: yupResolver(schema),
   });
@@ -80,17 +72,15 @@ function RegisterForm(props) {
         </Avatar>
 
         <Typography className={classes.title} component="h3" variant="h5">
-          Create An Account
+          Sign in
         </Typography>
 
         <form onSubmit={form.handleSubmit(handleSubmit)}>
           <InputField name="username" label="Ex: cobebuoito" form={form} />
-          <SelectField name="gender" label="Gender" form={form} />
           <PasswordField name="password" label="Enter password" form={form} />
-          <PasswordField name="retypePassword" label="Retype password" form={form} />
 
           <Button type="submit" className={classes.submit} variant="contained" color="primary" fullWidth>
-            Create an account
+            Sign in
           </Button>
         </form>
       </div>
@@ -98,4 +88,4 @@ function RegisterForm(props) {
   );
 }
 
-export default RegisterForm;
+export default LoginForm;

@@ -1,8 +1,8 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import InputField from 'components/form-controls/InputField';
+import { yupResolver } from 'features/Auth/LoginForm/@hookform/resolvers/yup';
+import InputField from 'features/Auth/LoginForm/components/form-controls/InputField';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm } from 'features/Auth/LoginForm/react-hook-form';
 import * as yup from 'yup';
 
 ChatForm.propTypes = {

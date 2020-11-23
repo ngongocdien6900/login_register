@@ -1,4 +1,4 @@
-const { createSlice } = require("@reduxjs/toolkit");
+const { createSlice } = require("features/Auth/Login/@reduxjs/toolkit");
 
 
 

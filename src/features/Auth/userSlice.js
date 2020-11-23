@@ -8,11 +8,26 @@ export const register = createAsyncThunk('user/register', async (payload) => {
 
   //save data to localStorage
   // localStorage.setItem('access_token', data.token);
+  // localStorage.setItem('user', JSON.stringify(data.user));
+
+  //return data
+  return data.user;
+});
+
+
+//payload là tham số user truyền vào ở form
+export const login = createAsyncThunk('user/login', async (payload) => {
+  //call api to register
+  const data = await userApi.login(payload);
+
+  //save data to localStorage
+  localStorage.setItem('access_token', data.token);
   localStorage.setItem('user', JSON.stringify(data.user));
 
   //return data
   return data.user;
 });
+
 
 const userSlice = createSlice({
   name: 'user',
@@ -29,6 +44,11 @@ const userSlice = createSlice({
   //tự định nghĩa ra
   extraReducers: {
     [register.fulfilled]: (state, action) => {
+      //action.payload là ở trên return ra
+      state.current = action.payload;
+    },
+
+    [login.fulfilled]: (state, action) => {
       //action.payload là ở trên return ra
       state.current = action.payload;
     },

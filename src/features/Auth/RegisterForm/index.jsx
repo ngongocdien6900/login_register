@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, makeStyles, Typography } from '@material-ui/core';
-import Container from '@material-ui/core/Container';
 import { LockOutlined } from '@material-ui/icons';
 import InputField from 'components/form-controls/InputField';
 import PasswordField from 'components/form-controls/PasswordField';
@@ -73,7 +72,7 @@ function RegisterForm(props) {
   };
 
   return (
-    <Container component="main" maxWidth="xs" className={classes.root}>
+
       <div className={classes.root}>
         <Avatar className={classes.avatar}>
           <LockOutlined></LockOutlined>
@@ -94,7 +93,6 @@ function RegisterForm(props) {
           </Button>
         </form>
       </div>
-    </Container>
   );
 }
 

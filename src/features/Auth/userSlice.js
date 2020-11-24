@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import userApi from 'api/userApi';
+import StorageKeys from 'constants/storage-keys';
 
 //payload là tham số user truyền vào ở form
 export const register = createAsyncThunk('user/register', async (payload) => {
@@ -21,8 +22,8 @@ export const login = createAsyncThunk('user/login', async (payload) => {
   const data = await userApi.login(payload);
 
   //save data to localStorage
-  localStorage.setItem('access_token', data.token);
-  localStorage.setItem('user', JSON.stringify(data.user));
+  localStorage.setItem(StorageKeys.TOKEN, data.token);
+  localStorage.setItem(StorageKeys.USER, JSON.stringify(data.user));
 
   //return data
   return data.user;

@@ -1,14 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 HomeFeatures.propTypes = {
     
 };
 
 function HomeFeatures(props) {
+    
+    // const loggedInUser = useSelector(state => state.user.current);
+    // const isLoggedIn = !!loggedInUser;
+
+    // const history = useHistory();
+   
     return (
         <div>
-            
+            This is Home Page
         </div>
     );
 }

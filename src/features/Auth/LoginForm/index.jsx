@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, makeStyles, Typography } from '@material-ui/core';
-import Container from '@material-ui/core/Container';
 import { LockOutlined } from '@material-ui/icons';
 import InputField from 'components/form-controls/InputField';
 import PasswordField from 'components/form-controls/PasswordField';
@@ -65,26 +64,24 @@ function LoginForm(props) {
   };
 
   return (
-    <Container component="main" maxWidth="xs" className={classes.root}>
-      <div className={classes.root}>
-        <Avatar className={classes.avatar}>
-          <LockOutlined></LockOutlined>
-        </Avatar>
+    <div className={classes.root}>
+      <Avatar className={classes.avatar}>
+        <LockOutlined></LockOutlined>
+      </Avatar>
 
-        <Typography className={classes.title} component="h3" variant="h5">
+      <Typography className={classes.title} component="h3" variant="h5">
+        Sign in
+      </Typography>
+
+      <form onSubmit={form.handleSubmit(handleSubmit)}>
+        <InputField name="username" label="Ex: cobebuoito" form={form} />
+        <PasswordField name="password" label="Enter password" form={form} />
+
+        <Button type="submit" className={classes.submit} variant="contained" color="primary" fullWidth>
           Sign in
-        </Typography>
-
-        <form onSubmit={form.handleSubmit(handleSubmit)}>
-          <InputField name="username" label="Ex: cobebuoito" form={form} />
-          <PasswordField name="password" label="Enter password" form={form} />
-
-          <Button type="submit" className={classes.submit} variant="contained" color="primary" fullWidth>
-            Sign in
-          </Button>
-        </form>
-      </div>
-    </Container>
+        </Button>
+      </form>
+    </div>
   );
 }
 

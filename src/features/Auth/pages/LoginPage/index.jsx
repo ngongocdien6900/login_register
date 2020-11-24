@@ -1,13 +1,16 @@
+import { Container } from '@material-ui/core';
 import { unwrapResult } from '@reduxjs/toolkit';
+import LoginForm from 'features/Auth/LoginForm';
+import { login } from 'features/Auth/userSlice';
 import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
-import LoginForm from '../LoginForm/index';
-import { login } from '../userSlice';
+import { useHistory } from 'react-router-dom';
 
-Login.propTypes = {};
+LoginPage.propTypes = {};
 
-function Login(props) {
+function LoginPage(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -17,18 +20,17 @@ function Login(props) {
       const resultAction = await dispatch(action);
       //hàm này sẽ handle error
       unwrapResult(resultAction);
-      //làm gì tiếp khi thành công ? redirect qua trang home :D
-      // enqueueSnackbar('Đăng nhập thành công', { variant: 'success' });
+      history.push('/');
     } catch (error) {
       enqueueSnackbar(error.message, { variant: 'error' });
     }
   };
 
   return (
-    <div>
+    <Container component="main" maxWidth="xs">
       <LoginForm onSubmit={handleSubmit} />
-    </div>
+    </Container>
   );
 }
 
-export default Login;
+export default LoginPage;

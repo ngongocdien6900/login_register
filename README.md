@@ -1,8 +1,8 @@
 
 # Auth
-- Bao gồm `Register` và `regiser form `
-- `Register` sẽ chứa `register form`
-- `Register` sẽ handle logic lúc register `form submit`
+- Bao gồm `RegisterPage` và `Regiser Form`
+- `RegisterPage` sẽ chứa `register form`
+- `RegisterPage` sẽ handle logic lúc register `form submit`
 
 # userSlice 
 -   async action, thực hiện gọi API
